@@ -1,0 +1,188 @@
+<style>
+
+  *, *:after, *:before {
+  box-sizing: border-box;
+}
+
+#containerWarrantyInfo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+
+#IconButtons [class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+#IconButtons ul {
+  text-align: center;
+  position: relative;
+  margin: 50px auto;
+}
+
+#IconButtons ul:after {
+  background: #f2f2f2;
+  z-index: -2;
+  height: 100%;
+  top: -50%;
+  width: 100%;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(63deg, #f8f8f8 5px, rgba(0, 0, 0, 0) 5px) 0 5px, linear-gradient(243deg, #f8f8f8 5px, rgba(0, 0, 0, 0) 5px) 10px 0px, linear-gradient(63deg, #f0f0f0 5px, rgba(0, 0, 0, 0) 5px) 0px 10px, linear-gradient(243deg, #f0f0f0 5px, rgba(0, 0, 0, 0) 5px) 10px 5px, linear-gradient(0deg, #f6f6f6 10px, rgba(0, 0, 0, 0) 10px), linear-gradient(#f2f2f2 25%, #f3f3f3 25%, #f3f3f3 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 75%, #f4f4f4 75%, #f4f4f4);
+  background-color: #f2f2f2;
+  background-size: 20px 20px;
+}
+
+#IconButtons li {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 50px;
+  line-height: 100px;
+  width: 100px;
+  height: 100px;
+  line-height: 105px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease-out;
+  margin: 20px;
+  border-radius: 50%;
+  text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(#fefefe, #ebebeb);
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.08), 0 5px 5px rgba(0, 0, 0, 0.075), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 2px 2px white, inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#IconButtons li i {
+  /*display: block;*/
+}
+
+#IconButtons li:active {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.075), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 2px 2px white, inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#IconButtons li:after {
+  z-index: -1;
+  content: "";
+  background: #e3e3e3;
+  position: absolute;
+  border-radius: inherit;
+  box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+#IconButtons li:nth-child(1) {
+  color: #efb3b3;
+  text-shadow: 0 -2px 2px #c2908f;
+}
+
+#IconButtons li:nth-child(2) {
+  color: #a7e0f1;
+  text-shadow: 0 -2px 2px #8fc4d2;
+}
+
+#IconButtons li:nth-child(3) {
+  color: #f9db92;
+  text-shadow: 0 -2px 2px #d2b57b;
+}
+
+.continueButton{
+  background-color: #448848;
+  color: white;
+  font-size: 45px;
+  padding: 10px;
+}
+
+.continueButton:hover{
+  background-color: #263d28;
+}
+
+.iconsTitle{
+  color: black;
+   font-size: 12px;
+}
+
+</style>
+
+
+<div id="containerWarrantyInfo" >
+
+  <div style="text-align-last: center;
+    margin: 15px;
+    font-size: 25px;
+    font-weight: bold;">
+    Escoge tu tipo de garantia
+  </div>
+
+  <div id="IconButtons">
+      <ul style="padding:0px">
+        <li title="Credito" ng-click="warrantyType('credit')">
+          <i class="fas fa-credit-card"></i>
+
+        </li>
+        <li style="display:none" title="Garantia reembolsable" ng-click="warrantyType('consignment')">
+          <i class="fas fa-money-bill"></i>
+
+        </li>
+        <li style="display:none" title="Garantia no reembolsable" ng-click="warrantyType('full')">
+          <i class="fas fa-suitcase"></i>
+
+        </li>
+      </ul>
+      <ul style="margin:0px">
+        <li title="Credito" ng-click="warrantyType('credit')" style="
+           box-shadow:none;
+           color: black;
+            line-height:20px;
+             text-shadow:none;
+              font-size:15px;
+              background:none;
+              margin-left:-15px;
+              margin-top:-10px;
+              font-weight: bold; ">
+          Tarjeta de credito
+        </li>
+        <li style="display:none" title="Garantia reembolsable" ng-click="warrantyType('consignment')">
+          <i class="fas fa-money-bill"></i>
+        </li>
+        <li style="display:none" title="Garantia no reembolsable" ng-click="warrantyType('full')">
+          <i class="fas fa-suitcase"></i>
+
+        </li>
+      </ul>
+  </div>
+
+  <div class="tabform" style="width: 50%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;">
+
+
+    <section class="loginWrapper" ng-show="currentView != null" ng-include="currentView"></section>
+    <section ng-show="currentView == null">
+      <div>
+        <div class="loader" style="height:5%">
+          <i class="fas fa-car-alt" style="font-size:40px"></i>
+          <span ng-if="!existMessage">&nbsp&nbsp&nbspSelecciona el tipo de garantia </span>
+          <span ng-if="existMessage">&nbsp&nbsp&nbsp<b>Ya hay una garantia previamente generada</b></span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div ng-if="existMessage"
+    style="    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    ">
+    <button ng-if="toContinue" class="btn continueButton" ng-click="exit()">
+      Continuar
+     </button>
+  </div>
+
+</div>

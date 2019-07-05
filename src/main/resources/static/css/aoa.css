@@ -1,0 +1,44 @@
+body{
+    background-image: url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+.sticky-footer{
+    margin-top: 5em;
+    width: 100% !important;
+}
+
+#mainNav .navbar-brand {
+    font-family: cursive;
+}
+
+.card-body{
+    /*background-image: url(https://img.freepik.com/free-vector/elegant-green-geometric-polygon-background_1035-13146.jpg?size=338&ext=jpg);*/
+    background-repeat: round;
+}
+
+.small, small {
+    color: white;
+}
+
+@media (min-width: 1224px) {
+  #div_4214 { width: 400px; right: auto; left: -27.5019vw; top: 0vw; }
+  #img_8185 { position: relative; width: 298px; right: auto; left: 29.874vw; top: 0vw; }
+}
+
+@media (max-width: 767px) and (min-width: 477px) {
+  #div_4214 { position: relative; height: 347px; bottom: auto; left: 0vw; top: -4.64396vw; width: 400px; right: auto; }
+}
+
+.labelInput{
+    background-color: #0b610b;
+    color: white;
+}
+
+select.select2{
+    position: static !important;
+    outline:none !important;
+}

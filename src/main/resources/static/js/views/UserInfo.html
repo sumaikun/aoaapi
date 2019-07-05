@@ -1,0 +1,139 @@
+<style>
+
+.title h1 {
+  font-size: 3.5em;
+  color: #fff;
+}
+
+.bar {
+  height: .25em;
+  width: 100%;
+  background: #fff;
+  margin: 1.5em auto 0;
+}
+
+.main {
+/*  background: $trans-orange;*/
+  min-height: 50vh;
+  position: relative;
+  top: 20vh;
+}
+
+input[type=text], input[type=password] {
+  font-size: 1.75em;
+  padding: .55em;
+  width: 100%;
+  margin-bottom: 1em;
+  border: none;
+
+  &::placeholder {
+   color: #aaaaaa;
+   position:relative;
+   padding:0;
+   transition: all 0.5s ease;
+  }
+
+  &:hover::placeholder, &:focus::placeholder {
+    padding-top: 3em;
+  }
+}
+
+.form {
+  h2 {
+    text-align: left;
+    font-weight: 100;
+    color: #fff;
+    margin-bottom: .5em;
+  }
+  h4 {
+    font-weight: 100;
+    color: #fff;
+    margin-top: 2em;
+  }
+}
+
+.login {
+  color: rgba(255, 255, 255, 1);
+  width: 6em;
+  font-family: $font;
+  font-weight: 100;
+  font-size: 1.75em;
+  border: 1px solid rgba(255, 255, 255, .75);
+  background: transparent;
+  transition: all 200ms ease-in;
+  border-radius: .65em;
+
+  &:hover, &:focus {
+    background: #fff;
+    color: $orange;
+    border: none;
+  }
+}
+
+.signup {
+  @extend .login;
+  font-size: 1em;
+  position: relative;
+  left: 1.5em;
+}
+
+// base
+h1, h2 h3, h4, h5, h6, input {
+  font-weight: 100;
+}
+
+#containerLogin {
+  position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00800040;
+}
+#loginBtn{
+  position: absolute;
+         width: 107%;
+         text-align: center;
+         background-color: green;
+         padding: 18px;
+         text-decoration: unset;
+}
+
+#loginBtn:hover{
+  background-color: rgb(24, 53, 27) !important;
+}
+
+
+</style>
+
+<div id="containerLogin" ng-if="!isFetching">
+  <div class="container main" style="
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center title"
+        style="text-align:center"
+      >
+        <h1>Bienvenido</h1>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 form">
+        <div style="width: 110%;
+             text-align: center;
+             color: #bdbdbd;"  >
+          <h2>Captura de información de garantia</h2>
+        </div>
+        <form ng-submit="getUserWarrantyStatus()">
+          <input type="text"  ng-model="info.licensePlate" placeholder="Placa del vehiculo" required/><br/>
+          <input type="password"  ng-model="info.phoneNumber" placeholder="Telefono registrado" required/>
+          <button type="submit" class="btn btn-default login" id="loginBtn" href="#0"
+          >Ingresar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

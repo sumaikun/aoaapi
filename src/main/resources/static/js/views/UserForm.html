@@ -1,0 +1,167 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="css/form2.css" rel="stylesheet">
+<div class="content-block form2" ng-show="!isFetching">
+    <div id="userFormContainer"
+    style="position: absolute;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;">
+          <div class="container" style="margin-top: 1em;">
+              <!-- Sign up form -->
+              <form ng-submit="persistCustomer()">
+                  <!-- Sign up card -->
+                  <div class="card person-card">
+                      <div class="card-body">
+                          <!-- Sex image -->
+                          <img id="img_sex" class="person-img"
+                              src="https://visualpharm.com/assets/217/Life%20Cycle-595b40b75ba036ed117d9ef0.svg">
+                          <h2 id="who_message" class="card-title">¡Cuentanos quien eres!</h2>
+                          <!-- First row (on medium screen) -->
+                          <div class="row">
+                              <div class="form-group col-md-2">
+                                  <select id="input_sex" ng-model="cliente.sexo" class="form-control" required>
+                                      <option value="M">Sr.</option>
+                                      <option value="F">Sra.</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-5">
+                                  <input id="first_name" ng-model="cliente.nombre" type="text" class="form-control" placeholder="Nombres" required>
+                                  <div id="first_name_feedback" class="invalid-feedback">
+
+                                  </div>
+                              </div>
+                              <div class="form-group col-md-5">
+                                  <input id="last_name" type="text" ng-model="cliente.apellido" class="form-control" placeholder="Apellidos" required>
+                                  <div id="last_name_feedback" class="invalid-feedback">
+
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group col-md-2">
+                                  <select id="input_sex" ng-model="cliente.tipo_id" class="form-control" required>
+                                      <option value=""disabled selected>Tipo de identificación</option>
+                                      <option value="CC">CEDULA DE CIUDADANIA</option>
+                                      <option value="CE">CEDULA DE EXTRANJERIA</option>
+                                      <option value="NIT">NIT</option>
+                                      <option value="PAS">PASAPORTE</option>
+                                      <option value="TI">TARJETA DE IDENTIDAD</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-5">
+                                  <input id="first_name" type="text" ng-model="cliente.identificacion" class="form-control" placeholder="Número de identificación" required>
+                                  <div id="first_name_feedback" class="invalid-feedback">
+
+                                  </div>
+                              </div>
+                              <div class="form-group col-md-5">
+                                  <input id="last_name" type="text" ng-model="cliente.lugar_expdoc" class="form-control" placeholder="Lugar de expedición" required>
+                                  <div id="last_name_feedback" class="invalid-feedback">
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-6" style="padding=0.5em;">
+                          <div class="card">
+                              <div class="card-body">
+                                  <h2 class="card-title">¿Como podemos contactarte?</h2>
+
+                                  <div class="form-group">
+                                      <label for="email" class="col-form-label">Email</label>
+                                      <input type="email" ng-model="cliente.email_e" class="form-control" id="email" placeholder="example@gmail.com" required>
+                                      <div class="email-feedback">
+
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="tel" class="col-form-label">Celular</label>
+                                      <input type="text" only-digits ng-model="cliente.celular" class="form-control" id="tel" placeholder="+33 6 99 99 99 99" required>
+                                      <div class="phone-feedback">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="telefono_oficina" class="col-form-label">Telefono oficina (No obligatorios)</label>
+                                      <input type="text" only-digits ng-model="cliente.telefono_oficina" class="form-control"  placeholder="Telefóno oficina">
+                                      <div class="email-feedback">
+
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="tel" class="col-form-label">Dirección oficina (No obligatorios)</label>
+                                      <input type="text" ng-model="cliente.direccion_oficina" class="form-control" id="tel" placeholder="Dirección oficina">
+                                      <div class="phone-feedback">
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6">
+                          <div class="card">
+                              <div class="card-body">
+                                  <h2 class="card-title">¡Donde te encuentras!</h2>
+                                  <div class="form-group">
+                                      <label for="tel" class="col-form-label">Dirección de domicilio</label>
+                                      <input type="text" ng-model="cliente.direccion" class="form-control" id="tel" placeholder="calle 1 2 3" required>
+                                      <div class="phone-feedback">
+
+                                      </div>
+                                  </div>
+
+
+
+                                  <div class="form-group">
+                                      <label for="tel" class="col-form-label">Departamentos</label>
+                                      <select  ng-model="selectedDeparment" ng-change="findCities()" class="form-control">
+                                          <option ng-repeat="item in departamentos" value="{{item.departamento}}">{{item.departamento}}</option>
+                                      </select>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="tel" class="col-form-label">Ciudad</label>
+                                      <select class="js-example-basic-single js-states validate" id="citiesSelect" ng-model='cliente.ciudad'  ng-options='item as item.nombre for item in ciudades track by item.codigo' style="width:100%" required>
+                        								 <option value="" disabled selected>View current values</option>
+                        							</select>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="tel" class="col-form-label">Barrio</label>
+                                      <input type="text" ng-model="cliente.barrio" class="form-control" id="tel" placeholder="San martin" required>
+                                      <div class="phone-feedback">
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div>
+                    <input type="checkbox" ng-model="agreementPersonalData">
+                    <span style="color:white">
+                      Autorizo tratamiento de datos personales según política de protección de datos personales
+                      <br>
+                      <a href="http://www.aoacolombia.com/assets/datos/PPDP_AOA.pdf" target="_blank">
+                        <i class="fas fa-eye"></i>
+                        Ver politica
+                      </a>
+                    </span>
+                  </div>
+
+                  <div style="margin-top: 1em;">
+                      <button type="submit" class="btn btn-primary btn-lg btn-block">¡Registrar!</button>
+                  </div>
+              </form>
+        </div>
+  </div>
+</div>

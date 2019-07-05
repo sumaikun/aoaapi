@@ -1,0 +1,44 @@
+<div>
+  <ul class="tabs">
+    <li class="active">Todo riesgo no reembolsable</li>
+    <li>Datos de devolución</li>
+  </ul>
+
+  <ul class="tab__content">
+
+    <li class="active">
+      <div class="content__wrapper">
+        <!--
+        <form method="POST" action="">
+          <input type="number" class="form-control num" ng-model="warranty.riesgo_consignacion" name="riesgo_consignacion" id="card-holder-name" placeholder="Comprobante de consignación" />
+          <div class="form-group">
+            <label>Fecha de consignación:</label>
+            <input class="form-control dateInput" datetime="yyyy-MM-dd" id="fecha2" ng-model="warranty.riesgo_fecha" name="riesgo_fecha" type="date">
+          </div>
+          <input type="submit" value="Realizar garantia todo riesgo" name="login">
+        </form>
+        -->
+        <form ng-submit="generateFullWarranty()" >
+          <input type="number" class="form-control num" ng-model="warranty.comprobante_consignacion" name="comprobante_consignacion" id="card-holder-name" placeholder="Comprobante de consignación" required>
+          <div class="form-group">
+            <label>Fecha de consignación:</label>
+            <input class="form-control dateInput" datetime="yyyy-MM-dd" name="fecha_consignacion" ng-model="warranty.fecha_consignacion" id="fecha1" type="date" required>
+          </div>
+          <input type="submit" value="Realizar garantia por consignación" name="login">
+        </form>
+      </div>
+    </li>
+
+    <li>
+      <div class="content__wrapper">
+        <div ng-include="'js/views/subviews/devolData.html'"></div>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+
+<script>
+  TabForm();
+</script>

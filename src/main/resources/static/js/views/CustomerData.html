@@ -1,0 +1,188 @@
+<style>
+ #containerCustomerInfo{
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: white;
+ }
+
+ .toxicboxheader {
+  background-color: white;
+  padding: 5px;
+  text-align: center;
+  color: black;
+  font-size: 30px;
+}
+
+.toxicbox {
+background-color: white;
+padding-top: 35px;
+padding-bottom: 35px;
+}
+
+.toxicbox span {
+ font-weight: bold;
+ font-size: 24px;
+}
+
+
+.toxicbox h1 {
+ color: white;
+ font-size: 24px;
+ text-align: center;
+}
+
+.flexcontainer {
+  display: flex;
+}
+
+.flexcontainer > div {
+  flex: 1; /*grow*/
+  text-align: center;
+  color: black;
+  padding: 35px;
+}
+
+.flexcontainer > div:hover {
+  transform: scale(1.01);
+  background-color: #144d19b3;
+}
+
+
+.middleinfobox {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.fa-skull-crossbones, .fa-industry, .fa-flask, .fa-car, .fa-building, .fa-user, .fa-user-check, .fa-map-marker-alt ,
+.fa-car-crash {
+ font-size: 48px;
+ margin-bottom: 10px;
+}
+
+table td {
+    padding: 30px;
+    font-size: 18px;
+}
+
+#customerButton:hover{
+  background-color: rgb(24, 53, 27) !important;
+}
+
+</style>
+
+<div id="containerCustomerInfo" >
+
+  <div class="toxicboxheader">
+      <br/>
+     <strong>Información del siniestro</strong>
+  </div>
+  <div class="toxicbox">
+    <h1>A continuación encontrará sus datos,  ¡verifiquelos <span style="text-decoration: underline;">atentamente!</span></h1><br />
+      <div class="flexcontainer">
+        <div><i class="fas fa-car"></i><br /><span> {{siniestro.placa}} </span><br />Placa del vehículo siniestrado</div>
+        <div class="middleinfobox"><i class="fas fa-industry"></i><br /> <span>Fecha de autorización</span><br />{{siniestro.fec_autorizacion}}</div>
+        <div><i class="fas fa-car-crash"></i><br /><span>{{siniestro.numero}}</span><br />Número de siniestro</div>
+      </div>
+      <div class="flexcontainer">
+        <div><i class="fas fa-building"></i><br /><span>{{aseguradora.razon_social}}</span> <br />Aseguradora</div>
+        <div class="middleinfobox"><i class="fas fa-user"></i><br /> <span>{{ siniestro.asegurado_nombre }}</span><br />Asegurado</div>
+        <div><i class="fas fa-user-check"></i><br /><span> {{ siniestro.declarante_nombre }} </span><br />Declarante</div>
+      </div>
+      <div class="flexcontainer">
+        <div style="visibility:collapse" ><i class="fas fa-car"></i><br /><span> JV777 </span><br />Placa del vehículo siniestrado</div>
+        <div class="middleinfobox"><i class="fas fa-map-marker-alt"></i><br /> <span>{{ ciudad.nombreCiudad }}</span><br />Ciudad de atención</div>
+        <div style="visibility:collapse" ><i class="fas fa-car"></i><br /><span> JV777 </span><br />Placa del vehículo siniestrado</div>
+      </div>
+  </div>
+
+  <div class="toxicboxheader">
+      <br/>
+     <button ng-if="!warrantyDone" id="customerButton" ng-click="goToCheck()"
+      style="background-color: green;
+        color: white;
+        width: 25%;
+        padding: 2%;border-radius: 5%;"
+     >Continuar</button>
+  </div>
+
+
+  <div class="modal" style="height: auto;">
+
+    <a class="close-modal" onclick="closeModal()"
+      style="cursor: grab;"
+    >X</a>
+
+    <div>
+
+      <div ng-if="warrantyDone" >
+          <br/>
+         <strong>Garantia procesada</strong>
+      </div>
+      <div ng-if="warrantyDone">
+        <span style="display: table;
+        margin-left: auto;
+        margin-right: auto;">
+        <div class="modal-body" style="padding:0px">
+            ¡ Estimado Usuario!, Ya se encuentra una o más garantías procesadas.
+            <br/>
+            <br/>
+            Garantía(s) en proceso:
+            <br/>
+          </span>
+          <br/>
+          <br/>
+            <table  border="" cellspacing="0"
+            style="display: table;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 10px">
+              <tbody>
+                <tr>
+                    <th>Responsable</th>
+                    <th>Fecha de Solicitud</th>
+                    <th>Fecha de Proceso</th>
+                    <th>Resultado</th>
+                </tr>
+                <tr ng-repeat="autorizacion in autorizaciones">
+                  <td style="font-size:12px">{{autorizacion.nombre}}</td>
+                  <td style="font-size:12px">{{autorizacion.fecha_solicitud}}</td>
+                  <td style="font-size:12px">{{autorizacion.fecha_devolucion}}</td>
+                  <td style="font-size:12px">
+                    <span ng-if="autorizacion.estado == 'A' " >Aceptada</span>
+                    <span ng-if="autorizacion.estado == 'R' " >Rechazada</span>
+                    <span ng-if="autorizacion.estado == 'E' " >Espera</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  function closeModal(){
+    event.preventDefault();
+    $(".modal").fadeOut();
+  }
+
+</script>
