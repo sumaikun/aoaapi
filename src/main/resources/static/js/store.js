@@ -13,7 +13,9 @@ angular.module('aoacustomers').service('store', function (actions, flux, $rootSc
       departamentos:todoStorage.get('departamentos'),
       ciudades:null,
       customerInfo:todoStorage.get('customerInfo'),
-      franquicias:[]
+      franquicias:[],
+      bancos:[]
+
     });
 
     this.getUserWarrantyStatus = (data) =>{
@@ -282,6 +284,34 @@ angular.module('aoacustomers').service('store', function (actions, flux, $rootSc
 
     }
 
+    this.getBanks = () => {
+      console.log("in get franchises");
+
+      console.log(this.getState('bancos'));
+
+      let successCallBack = res => {
+        //console.log(res.data);
+        let bancos = res.data;
+
+        
+        console.log(bancos);
+
+        this.setState("bancos",bancos);
+        this.setState("isFetching",false);
+      }
+
+      let errorCallBack = (err) => {
+        this.setState("isFetching",false);
+      }
+
+      let banco = this.getState('banco');
+
+      console.log(banco);
+
+      httpRequest.get("/getBanks",successCallBack,errorCallBack);
+
+    }
+
     this.generateCreditCardWarranty = (data) => {
 
       if(this.getState('isFetching'))
@@ -354,6 +384,7 @@ angular.module('aoacustomers').service('store', function (actions, flux, $rootSc
     this.listenTo(actions.findCities, this.findCities);
     this.listenTo(actions.persistCustomer, this.persistCustomer );
     this.listenTo(actions.getFranchises, this.getFranchises );
+    this.listenTo(actions.getBanks, this.getBanks );
     this.listenTo(actions.generateCreditCardWarranty, this.generateCreditCardWarranty );
     this.listenTo(actions.generateConsignmentCardWarranty, this.generateConsignmentCardWarranty );
   });

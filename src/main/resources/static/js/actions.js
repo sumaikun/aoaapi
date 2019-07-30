@@ -9,6 +9,7 @@ angular.module('aoacustomers').service('actions', function (flux) {
     'persistCustomer',
     'getFranchises',
     'generateCreditCardWarranty',
-    'generateConsignmentCardWarranty'
+    'generateConsignmentCardWarranty',
+    'getBanks'
   ]);
 });

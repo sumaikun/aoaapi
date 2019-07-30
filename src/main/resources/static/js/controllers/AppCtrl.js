@@ -269,10 +269,12 @@ angular.module('aoacustomers')
             }
             else{
               actions.getFranchises();
+              actions.getBanks();
             }
           }
           else{
             actions.getFranchises();
+            actions.getBanks();
           }
             //actions.getFranchises();
             //console.log($scope.aseguradora);
@@ -364,8 +366,11 @@ angular.module('aoacustomers')
       if($scope.warrantyType == 1)
       {
         $scope.warranty.franquicia = $scope.warranty.franquicia.id;
+        $scope.warranty.banco = $scope.warranty.banco.id;
         $scope.warranty.identificacionCliente = $scope.customerInfo;
         $scope.warranty.valor_garantia = $scope.aseguradora.garantia;
+        //console.log($scope.warranty);
+
         actions.generateCreditCardWarranty($scope.warranty);
 
         return;
