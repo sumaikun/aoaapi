@@ -13,10 +13,10 @@ function decode_utf8(s) {
 
 
 
-const LOCAL_MODE = true;
-const BASE_URL = window.location.href.indexOf('localhost') > 0 || LOCAL_MODE ? 'http://localhost:8080' : 'http://sac.aoacolombia.com:8080/aoaapi';
+const LOCAL_MODE = false;
+const BASE_URL = window.location.href.indexOf('localhost') > 0 || LOCAL_MODE ? 'http://localhost:8080' : 'https://sac.aoacolombia.com:8443/aoaapi';
 //const BASE_URL = 'http://localhost:8080';
-const UTF8_ON_DEPLOY = window.location.href.indexOf('sac.aoacolombia.com') > 0  ? true : false;
+const UTF8_ON_DEPLOY = window.location.href.indexOf('bablabla') > 0  ? true : false;
 
 console.log(window.location.href);
 

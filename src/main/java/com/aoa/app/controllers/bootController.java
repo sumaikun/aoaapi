@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class bootController {
 
-		@RequestMapping(value = "/" ,produces = "text/html;charset=UTF-8")
+		@RequestMapping(value = "/" ,produces = "text/html")
 		public String home() {
 
 			return "index.html";

@@ -44,9 +44,9 @@ public class AppointmentsController {
 	  {
 		 System.out.println("get appointments");
 		
-		 String query = "SELECT * FROM cita_servicio AS c INNER JOIN siniestro AS s ON c.siniestro = s.id \r\n" + 
+		 String query = "SELECT c.id as citaid, c.*, s.*, a.* FROM cita_servicio AS c INNER JOIN siniestro AS s ON c.siniestro = s.id \r\n" + 
 		 		"INNER JOIN sin_autor AS a ON a.siniestro = s.id WHERE c.oficina = '"+office+"' and c.fecha = '"+date+"' and c.estado = 'P' and a.estado = 'A' "
-		 	+ " ORDER BY s.id DESC LIMIT 1;";
+		 	+ " ORDER BY s.id DESC ;";
 		 
 		 List<Map<String, String>>  appointments = this.manager.ExecuteSql(query).fetch_query(null).get_rows();
       
@@ -62,8 +62,8 @@ public class AppointmentsController {
 	  {
 		 System.out.println("get appointments");
 		
-		 String query = "SELECT * FROM cita_servicio AS c INNER JOIN siniestro AS s ON c.siniestro = s.id \r\n" + 
-		 		"WHERE c.oficina = '"+office+"' and c.fec_devolucion = '"+date+"' AND c.estadod = 'P' ORDER BY s.id DESC LIMIT 1";
+		 String query = "SELECT c.id as citaid, c.*, s.* FROM cita_servicio AS c INNER JOIN siniestro AS s ON c.siniestro = s.id \r\n" + 
+		 		"WHERE c.oficina = '"+office+"' and c.fec_devolucion = '"+date+"' AND c.estadod = 'P' ORDER BY s.id DESC";
 		 
 		 List<Map<String, String>>  appointments = this.manager.ExecuteSql(query).fetch_query(null).get_rows();
     
