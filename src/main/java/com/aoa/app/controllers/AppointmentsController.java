@@ -35,8 +35,7 @@ public class AppointmentsController {
 	
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@ApiOperation(value = "obtener citas en proceso de finalización para la app")	
-	 
+	@ApiOperation(value = "obtener citas en proceso de entrega para la app")	 
 	@GetMapping(value = "/getAppPreparedAppointmentsDeliver/{office}/{date}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	  public ResponseEntity<?> getAppPreparedAppointments(@PathVariable(value = "office") String office,
 			  @PathVariable(value = "date") String date
@@ -54,7 +53,7 @@ public class AppointmentsController {
       	   
 	  }
 	
-	
+	@ApiOperation(value = "obtener citas en proceso de devolución para la app")	
 	@GetMapping(value = "/getAppPreparedAppointmentsDevol/{office}/{date}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	  public ResponseEntity<?> getAppPreparedAppointments2(@PathVariable(value = "office") String office,
 			  @PathVariable(value = "date") String date
@@ -68,6 +67,24 @@ public class AppointmentsController {
 		 List<Map<String, String>>  appointments = this.manager.ExecuteSql(query).fetch_query(null).get_rows();
     
 		 return (( appointments == null) ? new ResponseEntity( appointments , HttpStatus.NO_CONTENT) : new ResponseEntity(appointments, HttpStatus.OK)) ;          
+    	   
+	  }
+	
+	
+	@ApiOperation(value = "obtener información del siniestro de la cita")	
+	@GetMapping(value = "/getAppointmentSiniesterInfo/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	  public ResponseEntity<?> getAppointmentsSiniesterInfo(@PathVariable(value = "id") String id
+			  ) throws SQLException
+	  {
+		 System.out.println("get appointments");
+		
+		 String query = "SELECT s.numero, a.nombre as aseguradora , s.asegurado_nombre, s.declarante_nombre, s.placa AS placaSiniestro\r\n" + 
+		 		", o.nombre AS oficina , c.placa AS placaEntregar, c.agendada_por, c.dias_servicio  FROM cita_servicio AS c INNER JOIN siniestro AS s ON c.siniestro = s.id INNER JOIN aseguradora\r\n" + 
+		 		"AS a ON s.aseguradora = a.id INNER JOIN oficina AS o ON c.oficina = o.id WHERE c.id = "+id;
+		 
+		 Map<String, String>  info = this.manager.ExecuteSql(query).fetch_query(null).first_row();
+    
+		 return (( info  == null) ? new ResponseEntity( info , HttpStatus.NO_CONTENT) : new ResponseEntity(info, HttpStatus.OK)) ;          
     	   
 	  }
 	

@@ -64,7 +64,7 @@ public class SQLMANAGER {
                 for (int i = 1; i <= columnsNumber; i++) {
                     if (i > 1) System.out.print(",  ");
                     String columnValue = result.getString(i);
-                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                    System.out.print(columnValue + " " + rsmd.getColumnLabel(i));
                 }
                 System.out.println("");
             }
@@ -88,8 +88,8 @@ public class SQLMANAGER {
             while (result.next()) {
                  Map<String, String> map = new HashMap<>();
                    for(int i=1; i<=cols; i++){
-                    //System.out.println("Columna "+rsmd.getColumnName(i)+" valor "+result.getString(i));
-                    map.put(rsmd.getColumnName(i), result.getString(i));
+                    //System.out.println("Columna "+rsmd.getColumnLabel(i)+" valor "+result.getString(i));
+                    map.put(rsmd.getColumnLabel(i), result.getString(i));
                   }
                 this.records.add(map);              
             }            
