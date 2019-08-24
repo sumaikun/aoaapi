@@ -8,7 +8,7 @@ package com.aoa.app.config.db;
 public class db_config_aoa {
     protected String description = "Parametros de configuración de base de datos AOA";
     private final String driver;
-    private final String connectString="jdbc:mysql://app.aoacolombia.com/aoacol_aoacars?zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
+    private final String connectString="jdbc:mysql://192.192.181.251/aoacol_aoacars?zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
     private final String user="aoacol_arturo";
     private final String password="AOA0l1lwpdaa";
     private final String test = "Select * from pais";
